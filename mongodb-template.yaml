@@ -96,17 +96,6 @@ objects:
             - resources:
                 limits:
                   memory: '${MEMORY_LIMIT}'
-              readinessProbe:
-                exec:
-                  command:
-                    - /bin/sh
-                    - '-i'
-                    - '-c'
-                    - >-
-                      mongo 127.0.0.1:27017/$MONGODB_DATABASE -u $MONGODB_USER
-                      -p $MONGODB_PASSWORD --eval="quit()"
-                initialDelaySeconds: 3
-                timeoutSeconds: 1
               terminationMessagePath: /dev/termination-log
               name: mongodb
               livenessProbe:
